@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajul Tiwari | Author, Psychologist & Publisher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static "Front.jpg" %}'); background-size: cover; background-position: center; color: white; padding: 100px 0; }
+        .book-img { height: 250px; object-fit: cover; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'index' %}">Rajul Tiwari</a>
+            <div>
+                <a href="{% url 'index' %}" class="nav-link text-white d-inline mx-2">Home</a>
+                <a href="{% url 'vlog_list' %}" class="nav-link text-white d-inline mx-2">Vlogs</a>
+                <a href="/admin/" class="btn btn-outline-light btn-sm ms-3">Admin Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Rajul Tiwari</h1>
+            <p class="lead fs-4">An Author, Psychologist & Publisher Shaping Stories and Minds</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <!-- About Section -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="{% static 'Front.jpg' %}" alt="Rajul Tiwari" class="img-fluid rounded shadow-lg">
+            </div>
+            <div class="col-md-6">
+                <h2 class="fw-bold mb-3">About the Author</h2>
+                <p>Rajul Tiwari is an Indian author, psychologist, publisher, editor, and educator based in Delhi NCR. Originally from Gorakhpur, Uttar Pradesh, she brings over 20 years of experience across writing, publishing, media, education, and content creation.</p>
+                <p>She holds an MA in English, an MA in Psychology, and a BEd degree, and is a research scholar in Criminal Psychology. Her professional journey reflects her interests in literature, human behaviour, education, and communication.</p>
+            </div>
+        </div>
+
+        <!-- Literary Journey & Books -->
+        <div class="row my-5">
+            <div class="col-12 text-center mb-4">
+                <h2 class="fw-bold">Literary Journey & Book Reviews</h2>
+                <p class="text-muted">Rajul Tiwari's literary portfolio includes fiction and works exploring human experiences, identity, and transformation.</p>
+            </div>
+            
+            <!-- Book 1 -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="text-center p-3">
+                        <img src="{% static 'The Pink.jpg' %}" alt="The Pink Butterfly" class="book-img rounded shadow">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">1. The Pink Butterfly (2026)</h4>
+                        <p class="card-text">A novel exploring psychological complexity, identity, vulnerability, and transformation. Its introspective themes invite readers to reflect on personal change and the complexities of human behaviour.</p>
+                        <a href="https://amzn.in/d/0dTvLju" target="_blank" class="btn btn-dark btn-sm">Read on Amazon → The Pink Butterfly</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="text-center p-3">
+                        <img src="{% static 'Kalki.webp' %}" alt="Kalki" class="book-img rounded shadow">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">2. Kalki: The Manifestation — A Prophecy</h4>
+                        <p class="card-text">A title that adds a prophetic dimension to her literary portfolio, offering readers another perspective on her writing.</p>
+                        <a href="https://amzn.in/d/0gzsV9hE" target="_blank" class="btn btn-dark btn-sm">Read on Amazon → Kalki</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Contributions & Achievements -->
+        <div class="row my-5 bg-white p-4 rounded shadow-sm">
+            <div class="col-md-6">
+                <h3 class="fw-bold mb-3">Professional Contributions</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-2">🔹 <strong>Founder Director:</strong> Authors Pride Publisher Pvt. Ltd.</li>
+                    <li class="mb-2">🔹 <strong>Co-founder:</strong> Mind it with Rajul, a YouTube podcast.</li>
+                    <li class="mb-2">🔹 <strong>Editorial Contribution:</strong> Served as first-draft editor for Veer Gatha, an NCERT supplementary book about India's Param Vir Chakra awardees.</li>
+                    <li class="mb-2">🔹 <strong>Education & Mentorship:</strong> Mentored over 3,000 media students in new media, content, and English language skills.</li>
+                    <li class="mb-2">🔹 <strong>Inclusive Education:</strong> Supported students with special educational needs and neurodivergence through academic assistance.</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3 class="fw-bold mb-3">Achievements & Recognition</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-2">🏆 <strong>Editor's Choice Award:</strong> Two-time recipient from the International Library of Poetry, USA.</li>
+                    <li class="mb-2">🏆 <strong>International Poets Guild Awards:</strong> Recognised as an award winner.</li>
+                    <li class="mb-2">🏆 <strong>Media Features:</strong> Featured on podcasts, in books and magazines, and across literary platforms.</li>
+                    <li class="mb-2">🏆 <strong>Literary Engagement:</strong> Active across writing, editing, publishing, and literary media.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dynamic Vlogs Section -->
+        <div class="row my-5">
+            <div class="col-12 text-center mb-4">
+                <h2 class="fw-bold">Latest Vlogs</h2>
+                <p class="text-muted">Managed dynamically via the Admin Panel</p>
+            </div>
+            {% for vlog in vlogs %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ vlog.title }}</h5>
+                        <p class="card-text text-muted">{{ vlog.description }}</p>
+                        <a href="{{ vlog.video_url }}" target="_blank" class="btn btn-primary btn-sm">Watch Video</a>
+                    </div>
+                    <div class="card-footer bg-white text-muted small">
+                        Added on: {{ vlog.created_at|date:"M d, Y" }}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No vlogs added yet. Client can add new vlogs directly from the Django Admin Panel!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Rajul Tiwari. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
