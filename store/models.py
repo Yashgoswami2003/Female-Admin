@@ -1,8 +1,8 @@
 from django.db import models
 
-class Vlog(models.Model):
+class Blog(models.Model):
     title = models.CharField(max_length=200)
-    video_url = models.URLField(help_text="Paste YouTube or Video Link here")
+    date = models.CharField(max_length=100, default="October 2026")
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

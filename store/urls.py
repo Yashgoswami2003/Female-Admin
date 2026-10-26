@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('vlogs/', views.vlog_list, name='vlog_list'),
+    path('secure-login/', views.custom_admin_login, name='secure_login'),
 ]

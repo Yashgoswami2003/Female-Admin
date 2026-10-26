@@ -5,22 +5,327 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rajul Tiwari | Author, Psychologist & Publisher</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     <style>
-        .hero-section { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static "Front.jpg" %}'); background-size: cover; background-position: center; color: white; padding: 100px 0; }
-        .book-img { height: 250px; object-fit: cover; }
+        :root {
+            --primary-dark: #070a12;
+            --secondary-dark: #0f172a;
+            --accent-gold: #d97706;
+            --accent-gold-light: #fef3c7;
+            --accent-indigo: #6366f1;
+            --accent-purple: #a855f7;
+            --bg-light: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .top-accent-line {
+            height: 4px;
+            background: linear-gradient(90deg, #d97706 0%, #6366f1 50%, #a855f7 100%);
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(7, 10, 18, 0.94) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.65rem;
+            letter-spacing: -0.5px;
+            color: #fff !important;
+        }
+        .nav-link {
+            color: #94a3b8 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: radial-gradient(circle at 50% 0%, #2e1065 0%, #070a12 75%);
+            color: white;
+            padding: 110px 0 110px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(70px);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fef3c7;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 4rem;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #fef3c7 50%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.22rem;
+            color: #cbd5e1;
+            max-width: 750px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        /* Author Card */
+        .author-card-container {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 52px;
+            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            margin-top: -65px;
+            position: relative;
+            z-index: 10;
+        }
+        .author-img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .author-img {
+            width: 275px;
+            height: 275px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid #ffffff;
+            box-shadow: 0 20px 45px rgba(99, 102, 241, 0.22);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .author-img:hover {
+            transform: scale(1.04);
+        }
+        .badge-custom {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            color: #15803d;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        .badge-purple {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            color: #7e22ce;
+            border-color: rgba(168, 85, 247, 0.2);
+        }
+        .badge-blue {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            color: #1d4ed8;
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        /* Stats Bar */
+        .stats-container {
+            background: linear-gradient(135deg, #070a12 0%, #0f172a 100%);
+            border-radius: 24px;
+            padding: 36px 24px;
+            margin-top: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        .stat-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fef3c7, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.6rem;
+            margin-bottom: 4px;
+        }
+        .stat-item p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Section Titles */
+        .section-header {
+            margin-bottom: 52px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 2.6rem;
+            letter-spacing: -0.5px;
+            color: var(--primary-dark);
+        }
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Book Cards */
+        .book-card {
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 55px rgba(15, 23, 42, 0.12);
+            border-color: rgba(99, 102, 241, 0.35);
+        }
+        .book-img-box {
+            background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+            padding: 35px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .book-img {
+            height: 320px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.2));
+            transition: transform 0.4s ease;
+        }
+        .book-card:hover .book-img {
+            transform: scale(1.06) translateY(-4px);
+        }
+
+        /* Amazon Button */
+        .btn-amazon {
+            background: linear-gradient(135deg, #ff9900 0%, #ff8000 100%);
+            color: #111;
+            font-weight: 700;
+            padding: 14px 28px;
+            border-radius: 14px;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 153, 0, 0.25);
+            font-size: 1rem;
+        }
+        .btn-amazon:hover {
+            background: linear-gradient(135deg, #ff8000 0%, #e67300 100%);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 153, 0, 0.35);
+        }
+
+        /* Achievement Cards */
+        .achievement-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+        .achievement-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            border-color: #cbd5e1;
+        }
+        .achievement-icon {
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #b45309;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 22px;
+            border: 1px solid rgba(217, 119, 6, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: #94a3b8;
+            padding: 55px 0;
+            margin-top: 120px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="top-accent-line"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{% url 'index' %}">Rajul Tiwari</a>
-            <div>
-                <a href="{% url 'index' %}" class="nav-link text-white d-inline mx-2">Home</a>
-                <a href="{% url 'vlog_list' %}" class="nav-link text-white d-inline mx-2">Vlogs</a>
-                <a href="/admin/" class="btn btn-outline-light btn-sm ms-3">Admin Login</a>
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-feather-pointed" style="color: #fef3c7;"></i>
+                <span>Rajul Tiwari</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center gap-2">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#books">Explore Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blogs">Blogs</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-outline-light rounded-pill px-4 btn-sm fw-semibold" href="{% url 'secure_login' %}">Admin Login</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -28,117 +333,207 @@
     <!-- Hero Section -->
     <header class="hero-section text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold">Rajul Tiwari</h1>
-            <p class="lead fs-4">An Author, Psychologist & Publisher Shaping Stories and Minds</p>
+            <div class="hero-badge">
+                <i class="fa-solid fa-crown text-warning"></i> Official Author Showcase
+            </div>
+            <h1 class="hero-title">Rajul Tiwari</h1>
+            <p class="hero-subtitle">Author • Psychologist • Publisher • Educator Shaping Stories & Elevating Minds</p>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container my-5">
-        <!-- About Section -->
-        <div class="row align-items-center mb-5">
-            <div class="col-md-6 mb-4 mb-md-0">
-                <img src="{% static 'Front.jpg' %}" alt="Rajul Tiwari" class="img-fluid rounded shadow-lg">
-            </div>
-            <div class="col-md-6">
-                <h2 class="fw-bold mb-3">About the Author</h2>
-                <p>Rajul Tiwari is an Indian author, psychologist, publisher, editor, and educator based in Delhi NCR. Originally from Gorakhpur, Uttar Pradesh, she brings over 20 years of experience across writing, publishing, media, education, and content creation.</p>
-                <p>She holds an MA in English, an MA in Psychology, and a BEd degree, and is a research scholar in Criminal Psychology. Her professional journey reflects her interests in literature, human behaviour, education, and communication.</p>
-            </div>
-        </div>
-
-        <!-- Literary Journey & Books -->
-        <div class="row my-5">
-            <div class="col-12 text-center mb-4">
-                <h2 class="fw-bold">Literary Journey & Book Reviews</h2>
-                <p class="text-muted">Rajul Tiwari's literary portfolio includes fiction and works exploring human experiences, identity, and transformation.</p>
-            </div>
-            
-            <!-- Book 1 -->
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="text-center p-3">
-                        <img src="{% static 'The Pink.jpg' %}" alt="The Pink Butterfly" class="book-img rounded shadow">
+    <!-- Author Bio Card -->
+    <main class="container">
+        <div id="about" class="author-card-container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-4 text-center">
+                    <div class="author-img-wrapper">
+                        <img src="{% static 'Front.jpg' %}" alt="Rajul Tiwari" class="author-img">
                     </div>
-                    <div class="card-body">
-                        <h4 class="card-title">1. The Pink Butterfly (2026)</h4>
-                        <p class="card-text">A novel exploring psychological complexity, identity, vulnerability, and transformation. Its introspective themes invite readers to reflect on personal change and the complexities of human behaviour.</p>
-                        <a href="https://amzn.in/d/0dTvLju" target="_blank" class="btn btn-dark btn-sm">Read on Amazon → The Pink Butterfly</a>
+                </div>
+                <div class="col-lg-8">
+                    <div class="mb-3">
+                        <span class="badge-custom badge-purple"><i class="fa-solid fa-graduation-cap me-1"></i> MA English</span>
+                        <span class="badge-custom badge-blue"><i class="fa-solid fa-brain me-1"></i> MA Psychology</span>
+                        <span class="badge-custom"><i class="fa-solid fa-book-bookmark me-1"></i> BEd Scholar</span>
                     </div>
+                    <h2 class="fw-bold mb-3 text-dark" style="font-family: 'Playfair Display', serif; font-size: 2.2rem;">About the Author</h2>
+                    <p class="text-muted leading-relaxed fs-6 mb-3">
+                        Rajul Tiwari is a distinguished Indian author, psychologist, publisher, editor, and educator based in Delhi NCR. Originally from Gorakhpur, Uttar Pradesh, she brings over 20 years of rich experience across creative writing, media publishing, education, and strategic content development.
+                    </p>
+                    <p class="text-muted leading-relaxed fs-6 mb-0">
+                        Served as first-draft editor for Veer Gatha, an NCERT supplementary book about India's Param Vir Chakra awardees. As a research scholar in Criminal Psychology, her journey seamlessly integrates literature, human behavior, and educational mentorship.
+                    </p>
                 </div>
             </div>
 
-            <!-- Book 2 -->
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="text-center p-3">
-                        <img src="{% static 'Kalki.webp' %}" alt="Kalki" class="book-img rounded shadow">
+            <!-- Stats Bar -->
+            <div class="stats-container">
+                <div class="row text-center g-4">
+                    <div class="col-6 col-md-3 stat-item">
+                        <h3>20+</h3>
+                        <p>Years Experience</p>
                     </div>
-                    <div class="card-body">
-                        <h4 class="card-title">2. Kalki: The Manifestation — A Prophecy</h4>
-                        <p class="card-text">A title that adds a prophetic dimension to her literary portfolio, offering readers another perspective on her writing.</p>
-                        <a href="https://amzn.in/d/0gzsV9hE" target="_blank" class="btn btn-dark btn-sm">Read on Amazon → Kalki</a>
+                    <div class="col-6 col-md-3 stat-item">
+                        <h3>3,000+</h3>
+                        <p>Students Mentored</p>
+                    </div>
+                    <div class="col-6 col-md-3 stat-item">
+                        <h3>2x</h3>
+                        <p>Editor's Choice Winner</p>
+                    </div>
+                    <div class="col-6 col-md-3 stat-item">
+                        <h3>2+</h3>
+                        <p>Books Published</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Professional Contributions & Achievements -->
-        <div class="row my-5 bg-white p-4 rounded shadow-sm">
-            <div class="col-md-6">
-                <h3 class="fw-bold mb-3">Professional Contributions</h3>
-                <ul class="list-unstyled">
-                    <li class="mb-2">🔹 <strong>Founder Director:</strong> Authors Pride Publisher Pvt. Ltd.</li>
-                    <li class="mb-2">🔹 <strong>Co-founder:</strong> Mind it with Rajul, a YouTube podcast.</li>
-                    <li class="mb-2">🔹 <strong>Editorial Contribution:</strong> Served as first-draft editor for Veer Gatha, an NCERT supplementary book about India's Param Vir Chakra awardees.</li>
-                    <li class="mb-2">🔹 <strong>Education & Mentorship:</strong> Mentored over 3,000 media students in new media, content, and English language skills.</li>
-                    <li class="mb-2">🔹 <strong>Inclusive Education:</strong> Supported students with special educational needs and neurodivergence through academic assistance.</li>
-                </ul>
+        <!-- Explore Books Section -->
+        <section id="books" class="my-5 pt-5">
+            <div class="text-center section-header">
+                <h2 class="section-title">Explore Featured Works</h2>
+                <p class="section-subtitle">Discover literary works, deep psychological guides, and curated publications.</p>
             </div>
-            <div class="col-md-6">
-                <h3 class="fw-bold mb-3">Achievements & Recognition</h3>
-                <ul class="list-unstyled">
-                    <li class="mb-2">🏆 <strong>Editor's Choice Award:</strong> Two-time recipient from the International Library of Poetry, USA.</li>
-                    <li class="mb-2">🏆 <strong>International Poets Guild Awards:</strong> Recognised as an award winner.</li>
-                    <li class="mb-2">🏆 <strong>Media Features:</strong> Featured on podcasts, in books and magazines, and across literary platforms.</li>
-                    <li class="mb-2">🏆 <strong>Literary Engagement:</strong> Active across writing, editing, publishing, and literary media.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Dynamic Vlogs Section -->
-        <div class="row my-5">
-            <div class="col-12 text-center mb-4">
-                <h2 class="fw-bold">Latest Vlogs</h2>
-                <p class="text-muted">Managed dynamically via the Admin Panel</p>
-            </div>
-            {% for vlog in vlogs %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">{{ vlog.title }}</h5>
-                        <p class="card-text text-muted">{{ vlog.description }}</p>
-                        <a href="{{ vlog.video_url }}" target="_blank" class="btn btn-primary btn-sm">Watch Video</a>
+            <div class="row g-4">
+                <!-- Book 1: Kalki -->
+                <div class="col-md-6">
+                    <div class="book-card h-100 d-flex flex-column">
+                        <div class="book-img-box">
+                            <img src="{% static 'Kalki.webp' %}" class="book-img img-fluid" alt="Kalki: The Manifestation">
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+                            <div>
+                                <h4 class="fw-bold text-dark mb-2" style="font-family: 'Playfair Display', serif;">Kalki: The Manifestation — A Prophecy</h4>
+                                <p class="text-muted fs-6">A title that adds a prophetic dimension to her literary portfolio, offering readers another perspective on her writing.</p>
+                            </div>
+                            <div class="pt-3">
+                                <a href="https://amzn.in/d/0gzSV9hE" target="_blank" class="btn btn-amazon w-100 d-flex justify-content-center align-items-center gap-2 text-decoration-none">
+                                    <i class="fa-brands fa-amazon fs-5"></i>
+                                    <span>Buy on Amazon</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer bg-white text-muted small">
-                        Added on: {{ vlog.created_at|date:"M d, Y" }}
+                </div>
+                <!-- Book 2: The Pink Butterfly -->
+                <div class="col-md-6">
+                    <div class="book-card h-100 d-flex flex-column">
+                        <div class="book-img-box">
+                            <img src="{% static 'The Pink.jpg' %}" class="book-img img-fluid" alt="The Pink Butterfly">
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+                            <div>
+                                <h4 class="fw-bold text-dark mb-2" style="font-family: 'Playfair Display', serif;">The Pink Butterfly (2026)</h4>
+                                <p class="text-muted fs-6">A novel exploring psychological complexity, identity, vulnerability, and transformation. Its introspective themes invite readers to reflect on personal change.</p>
+                            </div>
+                            <div class="pt-3">
+                                <a href="https://amzn.in/d/0dTvTLju" target="_blank" class="btn btn-amazon w-100 d-flex justify-content-center align-items-center gap-2 text-decoration-none">
+                                    <i class="fa-brands fa-amazon fs-5"></i>
+                                    <span>Buy on Amazon</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            {% empty %}
-            <div class="col-12 text-center">
-                <p class="text-muted">No vlogs added yet. Client can add new vlogs directly from the Django Admin Panel!</p>
+        </section>
+
+        <!-- Achievements & Recognition Section -->
+        <section id="achievements" class="my-5 pt-5">
+            <div class="text-center section-header">
+                <h2 class="section-title">Achievements & Recognition</h2>
+                <p class="section-subtitle">Honors, editorial accomplishments, and contributions across literary platforms.</p>
             </div>
-            {% endfor %}
-        </div>
-    </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">Editor's Choice Award</h5>
+                        <p class="text-muted small mb-0">Two-time recipient from the International Library of Poetry.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">Poets Guild Award</h5>
+                        <p class="text-muted small mb-0">Recognised as an award winner by the International Poets Guild.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">NCERT Editorial</h5>
+                        <p class="text-muted small mb-0">First-draft editor for Veer Gatha (Param Vir Chakra awardees book).</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">Media Features</h5>
+                        <p class="text-muted small mb-0">Featured across podcasts, books, magazines, and literary media platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blogs Section -->
+        <section id="blogs" class="my-5 pt-5">
+            <div class="text-center section-header">
+                <h2 class="section-title">Latest Articles & Blogs</h2>
+                <p class="section-subtitle">Perspectives on literature, human emotions, and personal transformation.</p>
+            </div>
+            {% if blogs %}
+                <div class="row g-4">
+                    {% for blog in blogs %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="book-card p-4 h-100 d-flex flex-column justify-content-between shadow-sm">
+                            <div>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <i class="fa-regular fa-calendar" style="color: #6366f1;"></i>
+                                    <span class="text-muted small">{{ blog.date }}</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2" style="font-family: 'Playfair Display', serif;">{{ blog.title }}</h5>
+                                <p class="text-muted small">{{ blog.description }}</p>
+                            </div>
+                            <a href="#" class="fw-semibold text-decoration-none mt-3 d-inline-block" style="color: #6366f1;">Read Full Article →</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="book-card p-5 text-center shadow-sm">
+                            <div class="mb-3">
+                                <i class="fa-solid fa-hourglass-half fa-3x text-warning"></i>
+                            </div>
+                            <h3 class="fw-bold text-dark mb-2" style="font-family: 'Playfair Display', serif;">Coming Soon</h3>
+                            <p class="text-muted mb-0">Exciting new articles, thoughts, and literary insights are on the way. Stay tuned!</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4">
+    <footer class="text-center">
         <div class="container">
-            <p class="mb-0">&copy; 2026 Rajul Tiwari. All Rights Reserved.</p>
+            <p class="mb-1 text-light fw-medium">&copy; 2026 Rajul Tiwari. All Rights Reserved.</p>
+            <p class="small text-muted mb-0">Designed for Author, Psychologist & Publisher Showcase</p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
