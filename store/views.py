@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 from .models import Blog
 
 def index(request):
@@ -20,3 +22,9 @@ def custom_admin_login(request):
             messages.error(request, 'Invalid Username or Password!')
             
     return render(request, 'store/login.html')
+
+def create_admin_user(request):
+    if not User.objects.filter(username='RajulTiwari').exists():
+        User.objects.create_superuser('RajulTiwari', 'admin@example.com', 'TheAksh')
+        return HttpResponse("Superuser Created Successfully!")
+    return HttpResponse("Superuser already exists!")
